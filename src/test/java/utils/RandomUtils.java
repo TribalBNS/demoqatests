@@ -1,8 +1,11 @@
 package utils;
 
+import com.github.javafaker.Faker;
+
 import java.util.Random;
 
 public class RandomUtils {
+    public static Faker faker = new Faker();
     public static String RandomStringFromArray(String[] input) {
         Random random = new Random();
         int index = random.nextInt(input.length);
