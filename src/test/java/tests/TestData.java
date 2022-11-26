@@ -1,7 +1,7 @@
 package tests;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import utils.CityAccordingToState;
-import utils.MaxDayAccordingToMonth;
 import utils.RandomUtils;
 
 import java.io.File;
@@ -22,11 +22,11 @@ public class TestData {
     public static String firstName = RandomUtils.faker.name().firstName(),
             lastName = RandomUtils.faker.name().lastName(),
             userEmail = RandomUtils.faker.internet().emailAddress(),
-            userNumber = RandomUtils.faker.phoneNumber().cellPhone(),
+            userNumber = RandomStringUtils.randomNumeric(10),
             gender = RandomUtils.RandomStringFromArray(genderChoices),
             birthDateMonth = RandomUtils.RandomStringFromArray(birthDateMonthChoices),
             birthDateYear = Integer.toString(RandomUtils.faker.number().numberBetween(1950, 2000)),
-            birthDateDay = Integer.toString(RandomUtils.RandomIntInRange(1, MaxDayAccordingToMonth.MaxAvailableDay(birthDateMonth, birthDateYear))),
+            birthDateDay = RandomUtils.RandomBirthdayDay(birthDateMonth, birthDateYear),
             pictureName = "1.jpeg",
             currentAddress = RandomUtils.faker.address().fullAddress(),
             state = RandomUtils.RandomStringFromArray(stateChoices),

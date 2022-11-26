@@ -4,6 +4,8 @@ import com.github.javafaker.Faker;
 
 import java.util.Random;
 
+import static utils.BirthdayData.MaxAvailableDay;
+
 public class RandomUtils {
     public static Faker faker = new Faker();
     public static String RandomStringFromArray(String[] input) {
@@ -28,5 +30,12 @@ public class RandomUtils {
         Random random = new Random();
 
         return random.nextInt(max - min) + min;
+    }
+    public static String RandomBirthdayDay(String month, String year) {
+        String value = Integer.toString(RandomUtils.RandomIntInRange(1, MaxAvailableDay(month, year)));
+        if (value.length() == 1)
+            value = "0" + value;
+
+        return value;
     }
 }

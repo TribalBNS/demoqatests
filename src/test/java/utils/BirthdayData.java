@@ -1,6 +1,6 @@
 package utils;
 
-public class MaxDayAccordingToMonth {
+public class BirthdayData {
     private static final String[] allMonths = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 
     private static boolean LeapYearChecker(String year) {
@@ -16,6 +16,8 @@ public class MaxDayAccordingToMonth {
 
         return leap;
     }
+
+
 
     public static int MaxAvailableDay(String month, String year) {
         int maxDay = 0;
@@ -38,4 +40,6 @@ public class MaxDayAccordingToMonth {
         return maxDay;
 
     }
+
+
 }
