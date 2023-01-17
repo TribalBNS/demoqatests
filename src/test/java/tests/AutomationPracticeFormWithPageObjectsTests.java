@@ -1,6 +1,11 @@
 package tests;
 
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.*;
+import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import pages.RegistrationPage;
 
 import static utils.StringArrayToStringUtil.convertStringArrayToString;
 import static tests.TestData.*;
@@ -8,9 +13,17 @@ import static tests.TestData.*;
 public class AutomationPracticeFormWithPageObjectsTests extends TestBase {
 
     @Test
+    @Feature("Форма регистрации студента")
+    @Story("Заполнение формы регистрации студента")
+    @Owner("TribalBNS")
+    @Severity(SeverityLevel.BLOCKER)
+    @Link(value = "TestedURL", url = "https://demoqa.com")
+    @DisplayName("Проверка соответствия данных в таблице введённым данным")
     void fillFormTest() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
+        RegistrationPage steps = new RegistrationPage();
 
-        registrationPage.openPage()
+        steps.openPage()
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setUserEmail(userEmail)
@@ -24,7 +37,7 @@ public class AutomationPracticeFormWithPageObjectsTests extends TestBase {
                 .setStateCity(state, city)
                 .submitForm();
 
-        registrationPage.verifyResultsModalAppearance()
+        steps.verifyResultsModalAppearance()
                 .verifyResults("Label", "Values")
                 .verifyResults("Student Name", firstName + " " + lastName)
                 .verifyResults("Student Email", userEmail)
@@ -36,7 +49,8 @@ public class AutomationPracticeFormWithPageObjectsTests extends TestBase {
                 .verifyResults("Picture", pictureName)
                 .verifyResults("Address", currentAddress)
                 .verifyResults("State and City", state + " " + city)
-                .closeResultsForm();
+                .attachScreenshot();
+                steps.closeResultsForm();
 
     }
 }

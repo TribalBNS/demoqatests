@@ -1,6 +1,11 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
+import io.qameta.allure.Attachment;
+import io.qameta.allure.Step;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import pages.components.CalendarComponent;
 import pages.components.RegistrationResultsModal;
 
@@ -30,6 +35,7 @@ public class RegistrationPage {
             submitFormInput = $("#submit"),
             closeResultsFormInput = $("#closeLargeModal");
 
+    @Step("Открытие страницы")
     public RegistrationPage openPage() {
         open("/automation-practice-form");
         $(".practice-form-wrapper").shouldHave(text(TITLE_TEXT));
@@ -39,36 +45,42 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setFirstName(String value) {
-        firstNameInput.setValue(value);
+    @Step("Ввод имени {firstName}")
+    public RegistrationPage setFirstName(String firstName) {
+        firstNameInput.setValue(firstName);
 
         return this;
     }
 
-    public RegistrationPage setLastName(String value) {
-        lastNameInput.setValue(value);
+    @Step("Ввод фамилии {lastName}")
+    public RegistrationPage setLastName(String lastName) {
+        lastNameInput.setValue(lastName);
 
         return this;
     }
 
-    public RegistrationPage setUserEmail(String value) {
-        userEmailInput.setValue(value);
+    @Step("Ввод имейла {userEmail}")
+    public RegistrationPage setUserEmail(String userEmail) {
+        userEmailInput.setValue(userEmail);
 
         return this;
     }
 
-    public RegistrationPage setGender(String value) {
-        genderInput.$(byText(value)).click();
+    @Step("Выбор пола {gender}")
+    public RegistrationPage setGender(String gender) {
+        genderInput.$(byText(gender)).click();
 
         return this;
     }
 
-    public RegistrationPage setUserNumber(String value) {
-        userNumberInput.setValue(value);
+    @Step("Ввод телефонного номера {userNumber}")
+    public RegistrationPage setUserNumber(String userNumber) {
+        userNumberInput.setValue(userNumber);
 
         return this;
     }
 
+    @Step("Ввод даты рождения {day} {month} {year}")
     public RegistrationPage setDateOfBirth(String day, String month, String year) {
         birthDateInput.click();
         calendarComponent.setDate(day, month, year);
@@ -76,34 +88,39 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setSubjects(String[] value) {
-        for (String s : value) {
+    @Step("Выбор предметов {subjects}")
+    public RegistrationPage setSubjects(String[] subjects) {
+        for (String s : subjects) {
             subjectsInput.setValue(s).pressEnter();
         }
 
         return this;
     }
 
-    public RegistrationPage setHobbies(String[] value) {
-        for (String s : value) {
+    @Step("Выбор хобби {hobbies}")
+    public RegistrationPage setHobbies(String[] hobbies) {
+        for (String s : hobbies) {
             hobbiesInput.$(byText(s)).click();
         }
 
         return this;
     }
 
-    public RegistrationPage setPhoto(File value) {
-        photoInput.uploadFile(value);
+    @Step("Выбор фото {photo}")
+    public RegistrationPage setPhoto(File photo) {
+        photoInput.uploadFile(photo);
 
         return this;
     }
 
-    public RegistrationPage setCurrentAddress(String value) {
-        currentAddressInput.setValue(value);
+    @Step("Ввод адреса {currentAddress}")
+    public RegistrationPage setCurrentAddress(String currentAddress) {
+        currentAddressInput.setValue(currentAddress);
 
         return this;
     }
 
+    @Step("Выбор штата {state} и города {city}")
     public RegistrationPage setStateCity(String state, String city) {
         stateInput.click();
         $(byText(state)).click();
@@ -114,28 +131,37 @@ public class RegistrationPage {
         return this;
     }
 
+    @Step("Отправка формы")
     public RegistrationPage submitForm() {
         submitFormInput.click();
 
         return this;
     }
 
+    @Step("Проверка появления таблицы")
     public RegistrationPage verifyResultsModalAppearance() {
         registrationResultsModal.verifyModalAppearance();
 
         return this;
     }
 
+    @Step("Проверка соответствия {key} {value}")
     public RegistrationPage verifyResults(String key, String value) {
         registrationResultsModal.verifyResults(key, value);
 
         return this;
     }
 
+    @Step("Закрытие таблицы")
     public RegistrationPage closeResultsForm() {
         closeResultsFormInput.click();
 
         return this;
+    }
+
+    @Attachment(value = "Screenshot", type = "image/png", fileExtension = "png")
+    public byte[] attachScreenshot() {
+        return ((TakesScreenshot) WebDriverRunner.getWebDriver()).getScreenshotAs(OutputType.BYTES);
     }
 }
 
