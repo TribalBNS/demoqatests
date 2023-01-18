@@ -1,11 +1,8 @@
 package tests;
 
-import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.*;
-import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import pages.RegistrationPage;
 
 import static utils.StringArrayToStringUtil.convertStringArrayToString;
 import static tests.TestData.*;

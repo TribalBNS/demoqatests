@@ -18,13 +18,18 @@ public class RandomUtils {
 
     public static String[] SeveralRandomStringsFromArray(String[] input) {
         Random random = new Random();
-
-        String[] result = new String[random.nextInt(input.length)];
-        if (result.length != 0) {
-            int[] mix = random.ints(0, result.length).distinct().limit(result.length).toArray();
-            for (int i = 0; i < result.length; i++) {
-                result[i] = input[mix[i]];
-            }
+        boolean check = true;
+        int l = 0;
+        while(check) {
+            l = random.nextInt(input.length);
+            if (l < 1 || l > input.length)
+                continue;
+            check = false;
+        }
+        String[] result = new String[l];
+        int[] mix = random.ints(0, result.length).distinct().limit(result.length).toArray();
+        for (int i = 0; i < result.length; i++) {
+            result[i] = input[mix[i]];
         }
 
         return result;
