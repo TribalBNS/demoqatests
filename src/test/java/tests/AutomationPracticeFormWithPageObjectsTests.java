@@ -42,10 +42,7 @@ public class AutomationPracticeFormWithPageObjectsTests extends TestBase {
                 .verifyResults("Hobbies", convertStringArrayToString(hobbies, ", "))
                 .verifyResults("Picture", pictureName)
                 .verifyResults("Address", currentAddress)
-                .verifyResults("State and City", state + " " + city)
-                .attachScreenshot();
-                steps.closeResultsForm();
-
+                .verifyResults("State and City", state + " " + city);
     }
 }
 
