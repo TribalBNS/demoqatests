@@ -20,9 +20,6 @@ public class AutomationPracticeFormWithPageObjectsTests extends TestBase {
     @Link(value = "TestedURL", url = "https://demoqa.com")
     @DisplayName("Проверка соответствия данных в таблице введённым данным")
     void fillFormTest() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
-        RegistrationPage steps = new RegistrationPage();
-
         steps.openPage()
                 .setFirstName(firstName)
                 .setLastName(lastName)
