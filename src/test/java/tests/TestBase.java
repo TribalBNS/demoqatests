@@ -17,10 +17,19 @@ public class TestBase {
 
     @BeforeAll
     static void BeforeAll() {
-        Configuration.browserSize = "1920x1080";
-        Configuration.baseUrl = "https://demoqa.com";
+        String[] browserTypeVersion = System.getProperty("browser", "chrome 100").split("\\s+");
+        Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
+        Configuration.baseUrl = System.getProperty("baseUrl", "https://demoqa.com");
         Configuration.timeout = 10000;
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        Configuration.remote = "https://" +
+                System.getProperty("login", "user1") +
+                ":" +
+                System.getProperty("password", "1234") +
+                "@" +
+                System.getProperty("remoteWebDriverUrl", "selenoid.autotests.cloud") +
+                "/wd/hub";
+        Configuration.browser = browserTypeVersion[0];
+        Configuration.browserVersion = browserTypeVersion[1];
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("enableVNC", true);
