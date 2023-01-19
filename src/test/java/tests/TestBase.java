@@ -1,6 +1,5 @@
 package tests;
 
-import com.codeborne.selenide.Browser;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
@@ -16,7 +15,7 @@ public class TestBase {
     RegistrationPage steps = new RegistrationPage();
 
     @BeforeAll
-    static void BeforeAll() {
+    static void beforeAll() {
         String[] browserTypeVersion = System.getProperty("browser", "chrome 100").split("\\s+");
         Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
         Configuration.baseUrl = System.getProperty("baseUrl", "https://demoqa.com");
@@ -38,7 +37,7 @@ public class TestBase {
     }
 
     @BeforeEach
-    void BeforeEach() {
+    void beforeEach() {
         SelenideLogger.addListener("allure", new AllureSelenide());
     }
 

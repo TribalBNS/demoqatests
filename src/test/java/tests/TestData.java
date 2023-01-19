@@ -23,16 +23,16 @@ public class TestData {
             lastName = RandomUtils.faker.name().lastName(),
             userEmail = RandomUtils.faker.internet().emailAddress(),
             userNumber = RandomStringUtils.randomNumeric(10),
-            gender = RandomUtils.RandomStringFromArray(genderChoices),
-            birthDateMonth = RandomUtils.RandomStringFromArray(birthDateMonthChoices),
+            gender = RandomUtils.randomStringFromArray(genderChoices),
+            birthDateMonth = RandomUtils.randomStringFromArray(birthDateMonthChoices),
             birthDateYear = Integer.toString(RandomUtils.faker.number().numberBetween(1950, 2000)),
-            birthDateDay = RandomUtils.RandomBirthdayDay(birthDateMonth, birthDateYear),
+            birthDateDay = RandomUtils.randomBirthdayDay(birthDateMonth, birthDateYear),
             pictureName = "1.jpeg",
             currentAddress = RandomUtils.faker.address().fullAddress(),
-            state = RandomUtils.RandomStringFromArray(stateChoices),
-            city = RandomUtils.RandomStringFromArray(cities[CityAccordingToState.cityDeterminant(state)]);
-    public static String[] subjects = RandomUtils.SeveralRandomStringsFromArray(subjectChoices),
-            hobbies = RandomUtils.SeveralRandomStringsFromArray(hobbyChoices);
+            state = RandomUtils.randomStringFromArray(stateChoices),
+            city = RandomUtils.randomStringFromArray(cities[CityAccordingToState.cityDeterminant(state)]);
+    public static String[] subjects = RandomUtils.severalRandomStringsFromArray(subjectChoices),
+            hobbies = RandomUtils.severalRandomStringsFromArray(hobbyChoices);
     public static File img = new File("src/test/resources/" + pictureName);
 
 }

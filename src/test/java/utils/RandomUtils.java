@@ -4,19 +4,19 @@ import com.github.javafaker.Faker;
 
 import java.util.Random;
 
-import static utils.BirthdayData.MaxAvailableDay;
+import static utils.BirthdayData.maxAvailableDay;
 
 public class RandomUtils {
     public static Faker faker = new Faker();
 
-    public static String RandomStringFromArray(String[] input) {
+    public static String randomStringFromArray(String[] input) {
         Random random = new Random();
         int index = random.nextInt(input.length);
 
         return input[index];
     }
 
-    public static String[] SeveralRandomStringsFromArray(String[] input) {
+    public static String[] severalRandomStringsFromArray(String[] input) {
         Random random = new Random();
         boolean check = true;
         int l = 0;
@@ -35,14 +35,14 @@ public class RandomUtils {
         return result;
     }
 
-    public static int RandomIntInRange(int min, int max) {
+    public static int randomIntInRange(int min, int max) {
         Random random = new Random();
 
         return random.nextInt(max - min) + min;
     }
 
-    public static String RandomBirthdayDay(String month, String year) {
-        String value = Integer.toString(RandomUtils.RandomIntInRange(1, MaxAvailableDay(month, year)));
+    public static String randomBirthdayDay(String month, String year) {
+        String value = Integer.toString(RandomUtils.randomIntInRange(1, maxAvailableDay(month, year)));
         if (value.length() == 1)
             value = "0" + value;
 
