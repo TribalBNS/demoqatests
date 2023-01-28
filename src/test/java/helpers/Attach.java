@@ -31,7 +31,7 @@ public class Attach {
 
     public static void browserConsoleLogs() {
         attachAsText(
-                "Browser console logs",
+                "config.Browser console logs",
                 String.join("\n", Selenide.getWebDriverLogs(LogType.BROWSER))
         );
     }
