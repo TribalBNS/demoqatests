@@ -1,6 +1,5 @@
 package tests;
 
-import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import config.ConfigReader;
@@ -16,11 +15,13 @@ import pages.RegistrationPage;
 public class TestBase {
     RegistrationPage steps = new RegistrationPage();
     private static final WebConfig webConfig = ConfigReader.Instance.read();
+    private static final ProjectConfig projectConfig = new ProjectConfig(webConfig);
+    public static final String videoUrl = projectConfig.getVideoUrl();
+    public static final String videoFormat = projectConfig.getVideoFormat();
     @BeforeAll
     static void beforeAll() {
-        ProjectConfig projectConfig = new ProjectConfig(webConfig);
-        projectConfig.webConfig();
 
+        projectConfig.webConfig();
     }
 
     @BeforeEach

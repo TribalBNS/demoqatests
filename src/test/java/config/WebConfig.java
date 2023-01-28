@@ -37,4 +37,12 @@ public interface WebConfig extends Config {
     @Key("selenoidUrl")
     @DefaultValue("https://user1:1234@selenoid.autotests.cloud/wd/hub")
     String getSelenoidUrl();
+
+    @Key("videoUrl")
+    @DefaultValue("https://selenoid.autotests.cloud/video/")
+    String getVideoUrl();
+
+    @Key("videoFormat")
+    @DefaultValue(".mp4")
+    String getVideoFormat();
 }

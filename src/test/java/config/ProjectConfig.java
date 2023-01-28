@@ -24,4 +24,10 @@ public class ProjectConfig {
             Configuration.browserCapabilities = capabilities;
         }
     }
+    public String getVideoUrl(){
+        return webConfig.getVideoUrl();
+    }
+    public String getVideoFormat(){
+        return webConfig.getVideoFormat();
+    }
 }
